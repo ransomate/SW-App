@@ -1,0 +1,9 @@
+# SWProject
+__pycache__*.py[cod]
+db.sqlite3
+settings.py
+# OTHERS
+node_modules
+.DS_Store
+.idea
+media
