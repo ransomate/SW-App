@@ -1,11 +1,50 @@
 <!DOCTYPE html>
+{% load static i18n %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>SWProject</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A layout example that shows off a responsive pricing table.">    
+	<title>{% block title %}Home{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'base/css/pure-min.css' %}">
+    <link rel="stylesheet" href="{% static 'base/css/grids-responsive-min.css' %}">
+    <link rel="stylesheet" href="{% static 'base/css/pricing.css' %}">
+
 </head>
 <body>
-  {% block content %}
-  {% endblock %}
+
+<div class="pure-menu pure-menu-horizontal">
+    <a href="#" class="pure-menu-heading">Your Logo</a>
+    <ul class="pure-menu-list">
+        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Home</a></li>
+        <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Pricing</a></li>
+        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Contact</a></li>
+    </ul>
+</div>
+
+<div class="banner">
+    <h1 class="banner-head">
+        Simple Pricing.<br>
+        Try before you buy.
+        {% url 'index' %}
+        {% now 'Y' %}
+    </h1>
+</div>
+<div class="pure-g">
+    <div class="pure-u-1-5"></div>
+    <div class="pure-u-3-5">
+        <h4>Block Content</h4>
+        {% block content %}
+        {% block h1 %}{% endblock %}
+        {% endblock %}
+    </div>
+    <div class="pure-u-1-5"></div>
+</div>
+
+<div class="footer l-box">
+    <p>
+        <a href="#">Try now</a> for 14 days. No credit card required. Header image courtesy of <a href='http://unsplash.com/'>Unsplash</a>.
+    </p>
+</div>
 </body>
 </html>

@@ -1,0 +1,7 @@
+{% load static i18n %}
+{% if post.image %}
+<img class="items-item-image" src="{{ post.image.url }}">
+<img class="items-item-image" src="{{ post.image_thumbmail.url }}">
+{% else %}
+<img class="items-item-image" src="{% static 'base/images/no-image.png' %}">
+{% endif %}

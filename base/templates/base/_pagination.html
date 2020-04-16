@@ -1,0 +1,18 @@
+<h2>Rounded Active and Hover Buttons</h2>
+<nav>
+  {% if items.paginator.count > 1 %}
+    <div class="pagination">
+      {% if posts.has_previous %}
+      <a href="?page=1">&laquo;</a>
+      <a href="?page={{ posts.previous_page_number}}">Previous</a>
+      {% endif %}
+      <span>{{ posts.number }}</span>
+      <span>of</span>
+      <span>{{ posts.paginator.num_pages }}</span>
+      {% if posts.has_next %}
+      <a href="?page={{ posts.next_page_number }}">Next</a>
+      <a href="?page={{ posts.paginator.num_pages}}">&raquo;</a>
+      {% endif %}
+    </div>
+  {% endif %}
+</nav>
