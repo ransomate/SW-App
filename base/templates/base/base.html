@@ -21,6 +21,32 @@
         <li class="pure-menu-item"><a href="#" class="pure-menu-link">Contact</a></li>
         <li class="pure-menu-item"><a href="{% url 'add_post' %}" class="pure-menu-link">Add Post</a></li>
     </ul>
+    <!-- Login Section -->
+    <div id="header">
+  <span class="logo">Bookmarks</span>
+  {% if request.user.is_authenticated %}
+    <ul class="menu">
+      <li {% if section == "dashboard" %}class="selected"{% endif %}>
+        <a href="{% url "dashboard" %}">My dashboard</a>
+      </li>
+      <li {% if section == "images" %}class="selected"{% endif %}>
+        <a href="#">Images</a>
+      </li>
+      <li {% if section == "people" %}class="selected"{% endif %}>
+        <a href="#">People</a>
+      </li>
+    </ul>
+  {% endif %}
+
+  <span class="user">
+    {% if request.user.is_authenticated %}
+      Hello {{ request.user.first_name }},
+      <a href="{% url "logout" %}">Logout</a>
+    {% else %}
+      <a href="{% url "login" %}">Log-in</a>
+    {% endif %}
+  </span>
+</div>
 </div>
 
 <div class="banner">
@@ -29,16 +55,7 @@
     </h1>
 </div>
 <div class="pure-g">
-    <div class="pure-u-1-5"><li class="menu-li">
-<a class="menu-li-a {% url 'add_post' as add_post_url %}
-{%if request.get_full_path == add_post_url %}
-menu-li-a--active
-{% endif %}"
-href="{% url 'add_post' %}">
-Add post
-</a>
-</li>
-    </div>
+    <div class="pure-u-1-5">Aside</div>
     <div class="pure-u-3-5">
         <h4>Block Content</h4>
         {% block content %}

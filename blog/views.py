@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
 from .models import Post, Tag
@@ -26,6 +27,7 @@ def tag(request, slug=None):
     return render(request, 'base/tag.html', {'posts': posts, 'tag': _tag, 'title': title})
 
 
+@login_required
 def add_post(request):
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
@@ -39,6 +41,7 @@ def add_post(request):
         return render(request, 'blog/post_form.html', {'form': form, 'title': 'Add post', })
 
 
+@login_required
 def edit_post(request, pk=None):
     item = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
