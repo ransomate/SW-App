@@ -1,0 +1,6 @@
+ <h4>Delete Post {{post.title}}?</h4>
+ <form method="post">
+     <input type="submit" value="Confirm">
+	 <a href="/{{post.id}}">Cancel</a>
+	 {% csrf_token %}
+  </form>

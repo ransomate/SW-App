@@ -1,7 +1,23 @@
-{% load static i18n %}
-{% if posts.image %}
-<img class="items-item-image" src="{{ post.image.url }}">
-<img class="items-item-image" src="{{ post.image_thumbmail.url }}">
+{% load static %}
+<div class="grid items">
+{% for item in items %}
+<a class="col items-item" href="{{item.get_absolute_url }}">
+<div class="items-item-content">
+<div class="items-item-title">
+<div class="items-item-title-content">
+{{ item.title | truncatechars:45 }}
+</div>
+</div>
+{% if item.image %}
+<img class="items-item-image" src="{{item.image_thumbmail.url }}">
 {% else %}
-<img class="items-item-image" src="{% static 'base/images/no-image.png' %}">
+<img class="items-item-image" src="{%static 'base/images/no-image.png' %}">
 {% endif %}
+<div class="items-item-description">
+{{ item.description | truncatechars:70 }}
+</div>
+</div>
+</a>
+{% endfor %}
+<div class="clearfix"></div>
+</div>

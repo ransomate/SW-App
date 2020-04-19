@@ -4,70 +4,53 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A layout example that shows off a responsive pricing table.">    
-	<title>{% block title %}Home{% endblock %}</title>
+    <meta name="description" content="A layout example that shows off a responsive pricing table.">
+	<title>{% block title %} {% endblock %}</title>
     <link rel="stylesheet" href="{% static 'base/css/pure-min.css' %}">
     <link rel="stylesheet" href="{% static 'base/css/grids-responsive-min.css' %}">
     <link rel="stylesheet" href="{% static 'base/css/pricing.css' %}">
-
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="{% static 'base/css/grids-responsive-old-ie-min.css' %}">
+    <![endif]-->
 </head>
 <body>
-
-<div class="pure-menu pure-menu-horizontal">
-    <a href="#" class="pure-menu-heading">S W P</a>
-    <ul class="pure-menu-list">
-        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Home</a></li>
-        <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Pricing</a></li>
-        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Contact</a></li>
-        <li class="pure-menu-item"><a href="{% url 'add_post' %}" class="pure-menu-link">Add Post</a></li>
-    </ul>
-    <!-- Login Section -->
-    <div id="header">
-  <span class="logo">Bookmarks</span>
-  {% if request.user.is_authenticated %}
-    <ul class="menu">
-      <li {% if section == "dashboard" %}class="selected"{% endif %}>
-        <a href="{% url "dashboard" %}">My dashboard</a>
-      </li>
-      <li {% if section == "images" %}class="selected"{% endif %}>
-        <a href="#">Images</a>
-      </li>
-      <li {% if section == "people" %}class="selected"{% endif %}>
-        <a href="#">People</a>
-      </li>
-    </ul>
-  {% endif %}
-
-  <span class="user">
-    {% if request.user.is_authenticated %}
-      Hello {{ request.user.first_name }},
-      <a href="{% url "logout" %}">Logout</a>
-    {% else %}
-      <a href="{% url "login" %}">Log-in</a>
-    {% endif %}
-  </span>
-</div>
-</div>
-
-<div class="banner">
-    <h1 class="banner-head">
-        {% now 'Y-m-d' %}
-    </h1>
-</div>
 <div class="pure-g">
-    <div class="pure-u-1-5">Aside</div>
-    <div class="pure-u-3-5">
-        <h4>Block Content</h4>
-        {% block content %}
-        {% block h1 %}{% endblock %}
-        {% endblock %}
+    <div class="pure-u-1">
+        <nav class="pure-menu pure-menu-horizontal">
+            <a href="{% url 'index' %}" class="pure-menu-heading pure-menu-link"> s w p</a>
+            <ul class="pure-menu-list ">
+                <li class="pure-menu-item"><a class="pure-menu-link" >Add Posts</a></li>
+                {% url 'add_post' as add_post_url %} {% if not request.get_full_path == add_post_url %}
+                <li class="pure-menu-item"><a href="% url 'add_post' %}" class="pure-menu-link">Add Post</a></li>
+                {% endif %}
+                {% if request.user.is_authenticated %}
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">My Profile </a></li>
+                {% endif %}
+            </ul>
+            <span style="float:right; margin: 5px 40px; text-decoration:none; ">
+                {% include 'base/_login.html' %}
+            </span>
+        </nav>
+
     </div>
+    <main class="pure-u-1">
+        <div class="pure-u-3-24">
+
+        </div>
+        <div class="pure-u-11-24">
+        {% block content %}
+        {% endblock %}
+        </div>
+        <div class="pure-u-6-24">
+            <p>
+                {% block login_form%}
+                {% endblock %}
+            </p>
+        </div>
+    </main>
+
+    <footer class="pure-u-1 pure-u-md-1"></footer>
 </div>
 
-<div class="footer l-box">
-    <p>
-        <a href="#">Try now</a> for 14 days. No credit card required. Header image courtesy of <a href='http://unsplash.com/'>Unsplash</a>.
-    </p>
-</div>
 </body>
 </html>

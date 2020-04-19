@@ -31,7 +31,6 @@ class Post(models.Model):
     slug = models.SlugField(default='', blank=True)
     post_date = models.DateTimeField(auto_now_add=True, null=True)
     updated_date = models.DateTimeField(auto_now=True, null=True)
-    description = models.TextField(default='', blank=True)
     body = models.TextField(default='', blank=True)
     image = models.ImageField(default='', blank=True, upload_to='post_images')
     image_thumbnail = ImageSpecField(source='image',

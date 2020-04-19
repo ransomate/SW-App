@@ -17,16 +17,21 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
+from base import views
 from . import settings
 
 
 urlpatterns = [
     path('', include('base.urls')),
     path('blog/', include('blog.urls')),
+    path('tags/<slug:slug>/', views.tag, name='tag'),
     path('search/', include('search.urls')),
-    path('account/', include('account.urls')),
-    path('login/', auth_views.LoginView.as_view(), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('dashboard/', include('account.urls')),
     path('admin/', admin.site.urls),
+# not worked with these urls below
+#    path('accounts/register/', views.Register.as_view(), name='register'),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('account/', include('account.urls')),
+    #path('login/', auth_views.LoginView.as_view(), name='login'),
+    #path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('dashboard/', include('account.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

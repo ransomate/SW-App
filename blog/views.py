@@ -12,12 +12,12 @@ def index(request):
     paginator = Paginator(posts, 3)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
-    return render(request, 'base/index.html', {'posts': posts, 'title': 'index'})
+    return render(request, 'blog/index.html', {'posts': posts, 'title': 'index'})
 
 
 def post(request, slug=None):
-    _post = get_object_or_404(Post, slug=slug)
-    return render(request, 'blog/post.html', {'posts': _post, 'title': _post})
+    item = get_object_or_404(Post, slug=slug)
+    return render(request, 'blog/post.html', {'item': item, 'title': item, })
 
 
 def tag(request, slug=None):
@@ -38,7 +38,7 @@ def add_post(request):
             return redirect(item.get_absolute_url())
     else:
         form = PostForm()
-        return render(request, 'blog/post_form.html', {'form': form, 'title': 'Add post', })
+    return render(request, 'blog/post_form.html', {'form': form, 'title': 'add_post', })
 
 
 @login_required

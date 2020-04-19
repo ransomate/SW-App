@@ -1,0 +1,10 @@
+{% extends 'base/base.html'%}
+{% block content %}
+<h4>{{ post.title }}</h4>
+{{ post.body }}
+<br>
+<i>{{ post.tag }}</i>
+<img src="{{ post.image }}">
+<br>
+<a href="{% url 'post' %}">Back</a>
+{% endblock %}

@@ -34,10 +34,7 @@ def post(search_text):
     results = {}
     # iterate through keywords
     for word in words:
-        # Search in title, body or description
-        posts = posts.filter(Q(title__icontains=word) |
-                             Q(body__icontains=word) |
-                             Q(description__icontains=word))
-
+        # Search in title, or body
+        posts = posts.filter(Q(title__icontains=word) | Q(body__icontains=word))
         results['posts'] = posts
         return results

@@ -1,7 +1,8 @@
 {% extends 'base/base.html' %}
 {% block title %}{{ title }}{% endblock %}
+{% block hidebox %}main--no-box {% endblock %}
 {% block content %}
-
-   {% include 'base/_grid.html' %}
-   {% include 'base/_pagination.html' %}
+{% include 'search/_search_form.html' %}
+{% include 'base/_grid.html' %}
+{% include 'base/_pager.html' %}
 {% endblock %}

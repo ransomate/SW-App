@@ -2,7 +2,7 @@
 {% block title %}{{ title }}{% endblock %}
 {% block hidebox %}main--no-box{% endblock %}
 {% block content %}
-    {% include 'search/search_form.html' %}
+    {% include 'search/_search_form.html' %}
     {% if items %}
         <p class="search-count">
             Found <strong>{{ items.paginator.count }}</strong>
@@ -14,5 +14,5 @@
             No results for "<strong>{{ request.GET.q}}</strong>"
         </p>
     {% endif %}
-    {% include 'base/_pagination.html' %}
+    {% include 'base/_pager.html' %}
 {% endblock %}

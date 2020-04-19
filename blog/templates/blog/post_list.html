@@ -1,0 +1,19 @@
+{% extends 'base/base.html' %}
+{% block content %}
+    {% for post in post_list %}
+ <div class = "post_body">
+     <h4>{{ post.title }}</h4>
+      {{ post.body|safe|truncatewords:"50"|linebreaks }}
+     <strong><a href="detail/{{post.pk}}" style="text-decoration:none">Read more</a></strong>
+     <p style="font: italic small-caps bold 12px/30px Georgia, serif">Created: {{post.post_date|date:"M d, Y" }} </p>
+     <span class="post-author">By</span>
+{% if post.author.profile.display_name %}
+{{ post.author.profile.display_name }}
+{% else %}
+{{ post.author }}
+{% endif %}
+</div>
+
+    {% endfor %}
+
+{% endblock %}
