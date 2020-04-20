@@ -21,10 +21,10 @@
             <ul class="pure-menu-list ">
                 <li class="pure-menu-item"><a class="pure-menu-link" >Add Posts</a></li>
                 {% url 'add_post' as add_post_url %} {% if not request.get_full_path == add_post_url %}
-                <li class="pure-menu-item"><a href="% url 'add_post' %}" class="pure-menu-link">Add Post</a></li>
+                <li class="pure-menu-item"><a href="{{ add_post_url }}" class="pure-menu-link">Add Post</a></li>
                 {% endif %}
                 {% if request.user.is_authenticated %}
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">My Profile </a></li>
+                <li class="pure-menu-item"><a href="{% url 'profile' %}" class="pure-menu-link">My Profile </a></li>
                 {% endif %}
             </ul>
             <span style="float:right; margin: 5px 40px; text-decoration:none; ">

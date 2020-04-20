@@ -6,7 +6,8 @@
 {% block content %}
 <form class="pure-form" method="POST" enctype="multipart/formdata" action=" ">
 {% csrf_token %}
-{{ form }}
+    <table class="pure-table pure-table-horizontal">
+        {{ form.as_table }}</table>
 <input class="post-form-submit submit" type="submit" value="Save">
 </form>
 

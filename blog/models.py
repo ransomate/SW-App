@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.utils.text import slugify
 from imagekit.models import ImageSpecField
 from pilkit.processors import ResizeToFill
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -22,7 +23,7 @@ class Tag(models.Model):
         return "{}".format(self.title)
 
     def get_absolute_url(self):
-        return reverse('tag', args=[str(self.slug)])
+        return reverse('tag', args=[str(self.pk)])
 
 
 class Post(models.Model):
@@ -32,6 +33,7 @@ class Post(models.Model):
     post_date = models.DateTimeField(auto_now_add=True, null=True)
     updated_date = models.DateTimeField(auto_now=True, null=True)
     body = models.TextField(default='', blank=True)
+    author = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
     image = models.ImageField(default='', blank=True, upload_to='post_images')
     image_thumbnail = ImageSpecField(source='image',
                                      processors=[ResizeToFill(250, 100)],
@@ -54,4 +56,19 @@ class Post(models.Model):
         return "{}".format(self.title)
 
     def get_absolute_url(self):
-        return reverse('item', args=[str(self.slug)])
+        return reverse('item', args=[str(self.pk)])
+
+
+class Comment(models.Model):
+    post = models.ForeignKey('blog.Post', on_delete=models.CASCADE, related_name='comments')
+    author = models.CharField(max_length=200)
+    text = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True, null=True)
+    approved_comment = models.BooleanField(default=False)
+
+    def approve(self):
+        self.approved_comment = True
+        self.save()
+
+    def __str__(self):
+        return self.text

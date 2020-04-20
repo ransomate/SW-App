@@ -4,7 +4,9 @@
 {% block content %}
 <form method="post">
 {% csrf_token %}
-{{ form.as_p }}
+    <table class="pure-table pure-table-horizontal">
+        {{ form.as_p }}
+    </table>
 <button class="submit" type="submit">Register</button>
 <p>
 <a href="{% url 'password_reset' %}">Forgot password?

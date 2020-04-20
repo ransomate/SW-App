@@ -25,4 +25,4 @@ class User(models.Model):
         super(User, self).save()
 
     def get_absolute_url(self):
-        return reverse('profile', args=[str(self.slug)])
+        return reverse('profile', args=[str(self.id)])

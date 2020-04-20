@@ -22,7 +22,7 @@
     <ul class="tags">
         {% for tag in posts.tags.all %}
         <li class="tags-tag">
-            <a class="tags-tag-a" href="{% url 'tag' tag.slug %}">{{ tag }}</a>
+            <a class="tags-tag-a" href="{% url 'tag' tag.id %}">{{ tag }}</a>
         </li>
         {% endfor %}
     </ul>

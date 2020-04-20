@@ -3,9 +3,13 @@
 {% block title %}{{ title }}{% endblock %}
 {% block h1 %}<h1>{{ title }}</h1>{% endblock %}
 <div class="post">
-    <span class="post-author">
-        By <strong>admin</strong>
-    </span>
+<span class="post-author">By <strong>
+{% if item.author.profile.display_name %}
+{{ item.author.profile.display_name }}
+{% else %}
+{{ item.author }}
+{% endif %}
+</strong></span>
     <span class="post-date">
         {{ items.post_date |date:"M d,Y"}}
     </span>
@@ -21,7 +25,7 @@
             <ul class="tags">
                 {% for tag in item.tags.all %}
                     <li class="tags-tag">
-                        <a class="tags-tag-a" href="{% url 'tag'tag.slug %}">{{ tag }}</a>
+                        <a class="tags-tag-a" href="{% url 'tag' tag.id %}">{{ tag }}</a>
                     </li>
                 {% endfor %}
             </ul>
@@ -31,7 +35,7 @@
     <ul class="tags">
         {% for tag in items.tags.all %}
         <li class="tags-tag">
-            <a class="tags-tag-a" href="{% url 'tag' tag.slug %}">{{ tag }}</a>
+            <a class="tags-tag-a" href="{% url 'tag' tag.pk %}">{{ tag }}</a>
         </li>
         {% endfor %}
     </ul>

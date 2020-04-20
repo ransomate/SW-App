@@ -13,7 +13,7 @@
 {{ post.author }}
 {% endif %}
 </div>
-
+<a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.comments.count }}</a>
     {% endfor %}
 
 {% endblock %}

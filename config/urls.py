@@ -24,14 +24,17 @@ from . import settings
 urlpatterns = [
     path('', include('base.urls')),
     path('blog/', include('blog.urls')),
-    path('tags/<slug:slug>/', views.tag, name='tag'),
+    path('tags/<int:pk>/', views.tag, name='tag'),
     path('search/', include('search.urls')),
     path('admin/', admin.site.urls),
+    path('accounts/register/', views.Register.as_view(), name='register'),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('account/profile', views.profile, name='profile')
 # not worked with these urls below
 #    path('accounts/register/', views.Register.as_view(), name='register'),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('account/', include('account.urls')),
+    #path('accounts/', include('django.contrib.auth.urls')),
+    #path('account/', include('account.urls')),
     #path('login/', auth_views.LoginView.as_view(), name='login'),
     #path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('dashboard/', include('account.urls')),
+    #path('dashboard/', include('account.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
