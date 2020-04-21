@@ -1,6 +1,5 @@
-{% extends 'base/base.html' %}
-{% block content %}
-    {% for post in post_list %}
+{% load static %}
+{% for post in post_list %}
  <div class = "post_body">
      <h4>{{ post.title }}</h4>
       {{ post.body|safe|truncatewords:"50"|linebreaks }}
@@ -14,6 +13,5 @@
 {% endif %}
 </div>
 <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.comments.count }}</a>
-    {% endfor %}
+{% endfor %}
 
-{% endblock %}

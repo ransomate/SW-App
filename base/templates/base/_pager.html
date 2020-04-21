@@ -2,7 +2,7 @@
 <div class="pagination clearfix">
 {% if items.has_previous %}
     <a class="pagination-action" href="?page=1{% if request.GET.q %} & q={{ request.GET.q }}{% endif %}">
-        <i class="fa fa-angle-double-left" ariahidden="true"></i>
+        <i class="fa fa-angle-double-left" ariahidden="true" >&laquo;</i>
     </a>
     <a class="pagination-action" href="?page={{items.previous_page_number }}
     {% if request.GET.q %}&q={{ request.GET.q }}{% endif%}">
@@ -21,7 +21,7 @@
     <a class="pagination-action" href="?page={{items.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">
 <i class="fa fa-angle-right" ariahidden="true"></i></a>
 <a class="pagination-action" href="?page={{items.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">
-<i class="fa fa-angle-double-right" ariahidden="true"></i></a>
+<i class="fa fa-angle-double-right" ariahidden="true">&raquo;</i></a>
 {% endif %}
 </div>
 {% endif %}

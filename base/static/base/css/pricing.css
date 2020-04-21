@@ -242,3 +242,9 @@ p {
     /* Or set the width explicitly: */
     /* width: 10em; */
 }
+
+.items-item {
+  color: #000;
+  text-decoration: none;
+
+}

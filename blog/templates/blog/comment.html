@@ -3,7 +3,10 @@
 {% block content %}
     <h1>New comment</h1>
     <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
+                <table class="pure-table pure-table-horizontal">
+        {{ form.as_table }}
+        </table>
+        {% csrf_token %}
         <button type="submit" class="save btn btn-default">Send</button>
     </form>
 {% endblock %}

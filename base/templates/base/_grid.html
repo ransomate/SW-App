@@ -1,23 +1,36 @@
 {% load static %}
-<div class="grid items">
+<table class="pure-table">
 {% for item in items %}
-<a class="col items-item" href="{{item.get_absolute_url }}">
-<div class="items-item-content">
-<div class="items-item-title">
-<div class="items-item-title-content">
-{{ item.title | truncatechars:45 }}
-</div>
-</div>
-{% if item.image %}
-<img class="items-item-image" src="{{item.image_thumbmail.url }}">
-{% else %}
-<img class="items-item-image" src="{%static 'base/images/no-image.png' %}">
-{% endif %}
-<div class="items-item-description">
-{{ item.description | truncatechars:70 }}
-</div>
-</div>
+    <tr class="{% cycle 'none' 'pure-table-odd' %}">
+        <td>
+            <a class="col items-item" href="{{item.get_absolute_url }}">
+                <div>
+                    <section>
+                        <header>
+
+                            <h3 class="post-title">{{ item.title | truncatechars:45 }}</h3>
+                        </header>
+                        <main>
+                            <div class="body">
+                                <p>
+                                    {{ item.body | truncatechars:150}}
+                                </p>
+                            </div>
+                        </main>
+                        <footer>
+                            <p class="post-meta" id="yui_3_18_1_1_1587454186086_17">
+                                By <a href="#" class="post-author">{{ item.author }}</a>
+                                Tag <a class="post-category post-category-pure" href="#">
+                                {% if item.tag %}{{ item.tag }} {% else %} None {% endif %}</a>
+                                <br>{{ item.post_date|date:'d M Y' }}
+                            </p>
+                        </footer>
+                    </section>
+                </div>
+            </a>
+        </td>
+    </tr>
+</table>
 </a>
 {% endfor %}
-<div class="clearfix"></div>
-</div>
+

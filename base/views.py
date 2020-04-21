@@ -4,13 +4,14 @@ from blog.models import Post, Tag
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
+from django.template import RequestContext
 
 # Create your views here.
 
 
 def index(request):
     items = Post.objects.all()
-    paginator = Paginator(items, 3)
+    paginator = Paginator(items, 10)
     page = request.GET.get('page')
     items = paginator.get_page(page)
     return render(request, 'base/index.html', {'items': items, 'title': 'Home'})
@@ -31,3 +32,5 @@ class Register(generic.CreateView):
 
 def profile(request):
     return render(request, 'base/profile.html', {'title': 'profile'})
+
+

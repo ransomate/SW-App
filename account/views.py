@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 from django.contrib.auth.decorators import login_required
+from .models import User
 # Create your views here.
 
 
@@ -33,3 +34,12 @@ def dashboard(request):
 
 def logout(request):
     return render(request, 'account/dashboard.html', {'section': 'dashboard'})
+
+'''
+UPDATE
+< td > < a
+href = '/update{{student.id}}' > Update < / a >
+'''
+# Update user profile
+
+

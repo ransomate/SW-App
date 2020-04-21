@@ -6,8 +6,10 @@
 </head>
 <body>
 <form method="post">
-    {{ form.as_p }}
+    <table>
+    {{ form.as_table }}
     {% csrf_token %}
+    </table>
 </form>
 </body>
 </html>

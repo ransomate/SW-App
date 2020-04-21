@@ -2,9 +2,11 @@
 {% block title %}Log-in{% endblock %}
 {% block content %}
 <h1>Log-in</h1>
-    <p> Please, use the following form to log-in: </p>
+    <p> Please, use the following form to login: </p>
     <form action="." method="post">
-        {{ form.as_p }}
+        <table class="pure-table pure-table-horizontal">
+        {{ form.as_table }}
+        </table>
         {% csrf_token %}
         <p><input type="submit" value="Log in"></p>
     </form>

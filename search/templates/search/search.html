@@ -5,14 +5,14 @@
     {% include 'search/_search_form.html' %}
     {% if items %}
         <p class="search-count">
-            Found <strong>{{ items.paginator.count }}</strong>
-            result{{ items.paginator.count|pluralize}}.
+            Found <strong>{{ items.paginator.count }}</strong> result{{ items.paginator.count|pluralize}}.
         </p>
-        {% include 'base/_grid.html' %}
-    {% elif request.GET.q %}
+
+   {% include 'base/_grid.html' %}
+   {% elif request.GET.q %}
         <p class="search-no-results">
             No results for "<strong>{{ request.GET.q}}</strong>"
         </p>
     {% endif %}
-    {% include 'base/_pager.html' %}
+   {% include 'base/_pager.html' %}
 {% endblock %}

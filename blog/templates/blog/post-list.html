@@ -5,7 +5,6 @@
         <div class="post">
             <div class="date">
                 {{ post.published_date }}
-                HHHHHHHHHHHHHHHH
             </div>
             <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
             <p>{{ post.text|linebreaksbr }}</p>
@@ -13,3 +12,35 @@
         </div>
     {% endfor %}
 {% endblock content %}
+HHHHHHHHHHHHHHHHHHHHHHHHHH
+{% extends 'base/base.html' %}
+{% block content %}
+{% block title %}{{ title }}{% endblock %}
+{% block h1 %}<h1>{{ title }}</h1>{% endblock %}
+<div class="post">
+    <span class="post-author">
+        By <strong>admin</strong>
+    </span>
+    <span class="post-date">
+        {{ posts.post_date |date:"M d,Y"}}
+    </span>
+    <div class="post-description clearfix">
+        {{posts.description }}
+    </div>
+    {% if posts.image %}
+         <img class="post-image" src="{{ posts.image.url }}">
+    {% endif %}
+    <div class="post-body">
+        {{ posts.body }}
+    </div>
+    {% if posts.tags %}
+    <ul class="tags">
+        {% for tag in posts.tags.all %}
+        <li class="tags-tag">
+            <a class="tags-tag-a" href="{% url 'tag' tag.id %}">{{ tag }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+{% endblock %}
