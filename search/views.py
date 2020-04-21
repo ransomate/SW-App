@@ -15,7 +15,7 @@ def search_post(request):
     elif q is not None:
         items = search.post(q)
         # convert search result from dict to tuple for pagination
-        items = tuple(items.items())
+        #items = tuple(items.items())
         paginator = Paginator(items, 5)
         page = request.GET.get('page')
         items = paginator.get_page(page)

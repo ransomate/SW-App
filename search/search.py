@@ -36,5 +36,5 @@ def post(search_text):
     for word in words:
         # Search in title, or body
         posts = posts.filter(Q(title__icontains=word) | Q(body__icontains=word))
-        results['posts'] = posts
-        return results
+        #results['items'] = posts
+        return posts
