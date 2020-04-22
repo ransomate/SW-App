@@ -1,11 +1,10 @@
-{% extends 'blog/base.html' %}
+{% extends 'base/base.html' %}
 
 {% block content %}
-    <h1>New comment</h1>
+<p>{{ item.title }}</p>
+    <p>Add comment</p>
     <form method="POST" class="post-form">{% csrf_token %}
-                <table class="pure-table pure-table-horizontal">
-        {{ form.as_table }}
-        </table>
+        {{ form.as_p }}
         {% csrf_token %}
         <button type="submit" class="save btn btn-default">Send</button>
     </form>

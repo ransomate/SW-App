@@ -1,45 +1,18 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.contrib.auth import authenticate, login
-from .forms import LoginForm
-from django.contrib.auth.decorators import login_required
-from .models import User
-# Create your views here.
-
-
-def user_login(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            user = authenticate(request, username=cd['username'], password=cd['password'])
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return HttpResponse('Authenticated ' 'successfully')
-                else:
-                    return HttpResponse('Disabled account')
-            else:
-                return HttpResponse('Invalid login')
-        else:
-            form = LoginForm()
-        return render(request, 'account/login-old.html', {'form': form})
-
-
-
-@login_required
-def dashboard(request):
-    return render(request, 'account/dashboard.html', {'section': 'dashboard'})
+from datetime import datetime
+from .forms import UserUpdateForm
 
 
 def logout(request):
-    return render(request, 'account/dashboard.html', {'section': 'dashboard'})
-
-'''
-UPDATE
-< td > < a
-href = '/update{{student.id}}' > Update < / a >
-'''
-# Update user profile
+    return render(request, 'account/base.html', {'section': 'dashboard'})
 
 
+def update(request):
+    if request.method == 'POST':
+        form = UserUpdateForm(data=request.POST, instance=request.user)
+        update_form = form.save(commit=False)
+        update_form.last_update_date = datetime.now()
+        update_form.save()
+    else:
+        form = UserUpdateForm(instance=request.user)
+    return render(request, 'account/update.html', {'form': form})

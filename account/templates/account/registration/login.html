@@ -10,7 +10,7 @@
 <div class="login-form"> 
 <form action="{% url 'login' %}" method="post">
     <table class="pure-table pure-table-horizontal">
-        {{ form.as_table }}
+        {{ form.as_p }}
     </table>
 {% csrf_token %}
 <input type="hidden" name="next" value="{{ next }}" />

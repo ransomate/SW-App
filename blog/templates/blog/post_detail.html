@@ -1,16 +1,16 @@
 {% extends 'base/base.html'%}
 {% block content %}
-<h4>{{ post.title }}</h4>
-{{ post.body }}
+<h4>{{ item.title }}</h4>
+{{ item.body }}
 <br>
-<i>{{ post.tag }}</i>
-<img src="{{ post.image }}">
+<i>{{ item.tag }}</i>
+<img src="{{ item.image }}">
 <br>
-<a href="{% url 'post' %}">Back</a>
-{% endblock %}
+<a href="/">Back</a>
+
 <hr>
-<a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
-{% for comment in post.comments.all %}
+<a class="btn btn-default" href="{% url 'comment' pk=item.pk %}">Add comment</a>
+{% for comment in item.comments.all %}
     <div class="comment">
         <div class="date">{{ comment.created_date }}</div>
         <strong>{{ comment.author }}</strong>
@@ -19,3 +19,4 @@
 {% empty %}
     <p>No comments here yet :(</p>
 {% endfor %}
+{% endblock %}

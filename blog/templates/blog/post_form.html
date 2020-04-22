@@ -4,11 +4,10 @@
 {% endblock %}
 {% block h1 %}<h1>{{ title }}</h1>{% endblock %}
 {% block content %}
-<form class="pure-form" method="POST" enctype="multipart/formdata" action=" ">
-{% csrf_token %}
-    <table class="pure-table pure-table-horizontal">
-        {{ form.as_table }}</table>
-<input class="post-form-submit submit" type="submit" value="Save">
+<form class="pure-form" method="POST" enctype="multipart/formdata" action=" " >
+    {% csrf_token %}
+<fieldset class="form">{{ form.as_p }}</fieldset>
+    <button type="submit" class="pure-button pure-input-1-2 pure-button-primary">Post</button>
 </form>
 
 {% endblock %}

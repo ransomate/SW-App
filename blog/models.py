@@ -4,6 +4,7 @@ from django.utils.text import slugify
 from imagekit.models import ImageSpecField
 from pilkit.processors import ResizeToFill
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your models here.
 
@@ -30,9 +31,9 @@ class Post(models.Model):
     title = models.CharField(max_length=255, default='', unique=True)
     tags = models.ManyToManyField(Tag, blank=True)
     slug = models.SlugField(default='', blank=True)
-    post_date = models.DateTimeField(auto_now_add=True, null=True)
-    updated_date = models.DateTimeField(auto_now=True, null=True)
-    body = models.TextField(default='', blank=True)
+    post_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
+    body = models.TextField()
     author = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
     image = models.ImageField(default='', blank=True, upload_to='post_images')
     image_thumbnail = ImageSpecField(source='image',
@@ -63,7 +64,7 @@ class Comment(models.Model):
     post = models.ForeignKey('blog.Post', on_delete=models.CASCADE, related_name='comments')
     author = models.CharField(max_length=200)
     text = models.TextField()
-    created_date = models.DateTimeField(auto_now_add=True, null=True)
+    created_date = models.DateTimeField(auto_now_add=True)
     approved_comment = models.BooleanField(default=False)
 
     def approve(self):

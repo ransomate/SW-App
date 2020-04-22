@@ -1,36 +1,36 @@
 {% load static %}
-<table class="pure-table">
+<table class="pure-table pure-table-horizontal">
 {% for item in items %}
-    <tr class="{% cycle 'none' 'pure-table-odd' %}">
+    <tr class="{% cycle 'pure-table' 'pure-table-odd' %}">
         <td>
-            <a class="col items-item" href="{{item.get_absolute_url }}">
-                <div>
-                    <section>
+            <div>
+                <section>
+                    <a href="{{item.get_absolute_url }}">
                         <header>
 
                             <h3 class="post-title">{{ item.title | truncatechars:45 }}</h3>
                         </header>
-                        <main>
-                            <div class="body">
-                                <p>
-                                    {{ item.body | truncatechars:150}}
-                                </p>
-                            </div>
-                        </main>
-                        <footer>
-                            <p class="post-meta" id="yui_3_18_1_1_1587454186086_17">
-                                By <a href="#" class="post-author">{{ item.author }}</a>
-                                Tag <a class="post-category post-category-pure" href="#">
-                                {% if item.tag %}{{ item.tag }} {% else %} None {% endif %}</a>
-                                <br>{{ item.post_date|date:'d M Y' }}
+                    </a>
+                    <main>
+                        <div class="body">
+                            <p>
+                                {{ item.body | truncatechars:150}}
                             </p>
+                        </div>
+                    </main>
+                    <footer>
+                        <p class="post-meta" id="yui_3_18_1_1_1587454186086_17">
+                            By <a href="#" class="post-author">{{ item.author }}</a>
+                            Tag <a class="post-category post-category-pure" href="#">
+                            {% if item.tag %}{{ item.tag }} {% else %} None {% endif %}</a>
+                                <br>{{ item.post_date|date:'d M Y' }}
+                        </p>
                         </footer>
                     </section>
                 </div>
-            </a>
         </td>
     </tr>
 </table>
-</a>
+
 {% endfor %}
 

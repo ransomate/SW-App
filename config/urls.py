@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from base import views
+from account import views as acc_views
 from . import settings
 
 
@@ -28,12 +29,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/register/', views.Register.as_view(), name='register'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('account/profile', views.profile, name='profile')
-# not worked with these urls below
-#    path('accounts/register/', views.Register.as_view(), name='register'),
-    #path('accounts/', include('django.contrib.auth.urls')),
-    #path('account/', include('account.urls')),
-    #path('login/', auth_views.LoginView.as_view(), name='login'),
-    #path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    #path('dashboard/', include('account.urls')),
+    path('account/profile', views.profile, name='profile'),
+    path('account/profile/update', acc_views.update, name='update'),
+    path('captcha/', include('captcha.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

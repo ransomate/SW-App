@@ -18,6 +18,9 @@ Username: <span class="profile-username"><strong>{{request.user }}</strong></spa
 <div class="profile-field">
 Email: <span class="profile-email"><strong>{{request.user.email }}</strong></span>
 </div>
+<div class="profile-field">
+    <button type="button"><a href="{% url 'update' %}">Update Profile</a></button>
+</div>
 </div>
 {% endblock %}
 

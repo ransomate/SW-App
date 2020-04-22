@@ -1,0 +1,21 @@
+{% extends 'base/base.html' %}
+{% block login_form%}
+    <div>
+        <form action="{% url 'login' %}" method="post" class="pure-form pure-form-stacked">
+                <fieldset>
+        <legend>Login </legend>
+        <table class="pure-table pure-table-horizontal">
+        {{ form.as_table }}
+        </table>
+        {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}" />
+                    <button type="submit" class="pure-button pure-button-primary">Login</button>
+                </fieldset>
+        </form>
+    </div>
+<p>
+<a href="{% url 'password_reset' %}">Forgot password?
+</a> |
+<a href="{% url 'register' %}">Register</a>
+</p>
+{% endblock %}
