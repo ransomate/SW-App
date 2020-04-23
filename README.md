@@ -1,3 +1,2 @@
 # SW-App
-SW-App
-Securing Web Programming App
+Securing Web Test Programming App
